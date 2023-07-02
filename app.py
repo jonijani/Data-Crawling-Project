@@ -1,19 +1,15 @@
 from flask import Flask
 
+from bs4_test import get_search_results_from_keyword
+
 app = Flask(__name__)  # __name__ accepts file name 
 
-@app.route('/')
-# ‘/’ URL is bound with hello_world() function.
-def hello_world():
-    return 'Hello World'
+@app.route('/api/<string:keyword>',methods=['GET'])
+def get_result(keyword):
+    return get_search_results_from_keyword(keyword)
 
-@app.route('/hi')
-def hi():
-    return 'hello junaid it hi function'
 
-@app.route('/joni')
-def junaid():
-    return 'Helloooo junaid'
+
 
 if __name__ == '__main__':
     app.run()
